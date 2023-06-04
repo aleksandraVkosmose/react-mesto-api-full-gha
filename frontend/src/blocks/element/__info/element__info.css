@@ -1,0 +1,7 @@
+.element__info {
+  max-width: 240px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 25px auto;
+}
