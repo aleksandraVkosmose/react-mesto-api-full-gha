@@ -78,10 +78,10 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'http://api.mestoAalexandera.nomoredomains.rocks'
-  // headers: {
-  //   "Content-Type": "application/json",
-  // }
+  baseUrl: 'http://api.mestoaalexandera.nomoredomains.rocks',
+  headers: {
+    "Content-Type": "application/json",
+  }
 })
 
 export default api;
