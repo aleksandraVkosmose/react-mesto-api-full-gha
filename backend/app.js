@@ -22,7 +22,7 @@ const app = express();
 
 mongoose.connect('mongodb://localhost:27017/mestodb');
 
-// app.use(express.json());
+app.use(express.json());
 app.use(cors());
 app.use(requestLogger);
 app.post('/signin', loginValidation, login);
