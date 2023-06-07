@@ -3,21 +3,21 @@ const allowedCors = [
     'https://mestoaalexandera.nomoredomains.rocks',
   ];
   
-  const handlerCORS = (req, res, next) => {
-    const { origin } = req.headers;
+  const handlerCORS = (request, response, next) => {
+    const { origin } = request.headers;
     if (allowedCors.includes(origin)) {
-      res.header('Access-Control-Allow-Origin', origin);
-      res.header('Access-Control-Allow-Credentials', true);
+      response.header('Access-Control-Allow-Origin', origin);
+      response.header('Access-Control-Allow-Credentials', true);
     }
   
-    const { method } = req;
+    const { method } = request;
     const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
-    const requestHeaders = req.headers['access-control-request-headers'];
+    const requestHeaders = request.headers['access-control-request-headers'];
   
     if (method === 'OPTIONS') {
-      res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
-      res.header('Access-Control-Allow-Headers', requestHeaders);
-      return res.end();
+      response.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
+      response.header('Access-Control-Allow-Headers', requestHeaders);
+      return response.end();
     }
   
     return next();
