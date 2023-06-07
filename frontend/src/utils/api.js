@@ -78,10 +78,9 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'http://api.mestoaalexandera.nomoredomains.rocks',
+  baseUrl: 'https://api.mestoaalexandera.nomoredomains.rocks',
   headers: {
     "Content-Type": "application/json",
-    authorization: `Bearer ${localStorage.getItem('jwt')}`,
   }
 })
 
