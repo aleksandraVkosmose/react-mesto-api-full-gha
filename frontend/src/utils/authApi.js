@@ -1,6 +1,5 @@
 class AuthApi {
     constructor(options) {
-        this._options = options;
         this._url = options.baseUrl;
         this._headers = options.headers;
     }
@@ -42,7 +41,8 @@ class AuthApi {
 const authApi = new AuthApi({
     baseUrl: "https://api.mestoaalexandera.nomoredomains.rocks",
     headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Accept": "application/json"
     }
 });
 
