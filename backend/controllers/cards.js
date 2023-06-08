@@ -61,7 +61,7 @@ module.exports.addLike = (request, response, next) => {
       request.params.cardId,
       { $addToSet: { likes: request.user._id } },
       { new: true },
-    ).populate(['owner', 'likes'])
+    )
     .then((card) => {
       if (!card) {
         throw new NotFoundError('User cannot be found');
@@ -82,7 +82,7 @@ module.exports.deleteLike = (request, response, next) => {
       request.params.cardId,
       { $pull: { likes: request.user._id } },
       { new: true },
-    ).populate(['owner', 'likes'])
+    )
     .then((card) => {
       if (!card) {
         throw new NotFoundError('User cannot be found');
