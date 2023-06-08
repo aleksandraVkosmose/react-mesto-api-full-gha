@@ -66,7 +66,7 @@ module.exports.addLike = (request, response, next) => {
       if (!card) {
         throw new NotFoundError('User cannot be found');
       }
-      response.send({ data: card });
+      response.send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -87,7 +87,7 @@ module.exports.deleteLike = (request, response, next) => {
       if (!card) {
         throw new NotFoundError('User cannot be found');
       }
-      response.send({ data: card });
+      response.send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {

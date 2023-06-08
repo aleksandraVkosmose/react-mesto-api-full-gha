@@ -8,7 +8,8 @@ const userSchema = require('../models/user');
 const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
 const ConflictError = require('../errors/ConflictError');
-
+const {NODE_ENV} = process.env
+const JWT = process.env.REACT_APP_JWT
 module.exports.getUsers = (request, response, next) => {
   userSchema
     .find({})
@@ -165,7 +166,7 @@ module.exports.login = (request, response, next) => {
   return userSchema
     .findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'cat', {
+      const token = jwt.sign({ _id: user._id }, NODE_ENV==='production' ? JWT : 'cat', {
         expiresIn: '1w',
       });
       response.send({ token });
