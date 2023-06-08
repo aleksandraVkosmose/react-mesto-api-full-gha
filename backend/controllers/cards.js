@@ -62,7 +62,7 @@ module.exports.addLike = (request, response, next) => {
       { $addToSet: { likes: request.user._id } },
       { new: true },
     )
-    .card.populate(['onwer', 'likes'])
+    .card.populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
         throw new NotFoundError('User cannot be found');
