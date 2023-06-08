@@ -36,8 +36,10 @@ module.exports.getUserById = (request, response, next) => {
 };
 
 module.exports.getUser = (request, response, next) => {
+ 
   userSchema.findById(request.user._id)
     .then((user) => {
+      console.log(user)
       if (!user) {
         throw new NotFoundError('User cannot be found');
       }

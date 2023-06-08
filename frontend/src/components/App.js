@@ -145,11 +145,11 @@ function App() {
   function handleAuthUser(email, password) {
     authApi
       .loginUser(email, password)
-      .then((data) => {
-        if (data.token) {
+      .then((token) => {
+        if (token) {
           setHeaderEmail(email);
           setIsLoggedIn(true);
-          localStorage.setItem("jwt", data.token);
+          localStorage.setItem("jwt", token);
           navigate("/");
         }
       })
@@ -168,7 +168,7 @@ function App() {
         .then((data) => {
           if (data) {
             setIsLoggedIn(true);
-            setHeaderEmail(data.data.email);
+            setHeaderEmail(data.email);
             navigate("/");
           }
         })
