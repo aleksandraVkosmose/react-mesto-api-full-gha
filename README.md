@@ -4,7 +4,7 @@
 
 Адрес репозитория: https://github.com/aleksandraVkosmose/react-mesto-api-full-gha.git
 
-## Ссылки на проект
+## Ссылки на проект:
 
 IP 51.250.74.187
 
