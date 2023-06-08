@@ -2,6 +2,7 @@
  * @author Aleksandra Kozlova
  */
 
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const userSchema = require('../models/user');
@@ -169,7 +170,8 @@ module.exports.login = (request, response, next) => {
       const token = jwt.sign({ _id: user._id }, NODE_ENV==='production' ? JWT : 'cat', {
         expiresIn: '1w',
       });
-      response.send({ token });
+      console.log(token)
+      response.send({token});
     })
     .catch(next);
 };

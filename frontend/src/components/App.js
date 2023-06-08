@@ -33,8 +33,24 @@ function App() {
   const [headerEmail, setHeaderEmail] = useState("");
   const navigate = useNavigate();
 
+  const checkLoginToken = () => {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      authApi
+        .checkToken(jwt)
+        .then((data) => {
+          if (data) {
+            setIsLoggedIn(true);
+            setHeaderEmail(data.email);
+            navigate("/");
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   useEffect(() => {
-  
+    checkLoginToken()
     if (isLoggedIn){
     api.getUserInfo()
       .then(profileInfo => setCurrentUser(profileInfo))
@@ -49,7 +65,7 @@ function App() {
       })))
     })
       .catch(err => console.log(err))
-  }}, [isLoggedIn, navigate]);
+  }}, [isLoggedIn]);
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false)
@@ -149,7 +165,7 @@ function App() {
         if (token) {
           setHeaderEmail(email);
           setIsLoggedIn(true);
-          localStorage.setItem("jwt", token);
+          localStorage.setItem("jwt", token.token);
           navigate("/");
         }
       })
@@ -160,21 +176,7 @@ function App() {
       });
   }
 
-  useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      authApi
-        .checkToken(jwt)
-        .then((data) => {
-          if (data) {
-            setIsLoggedIn(true);
-            setHeaderEmail(data.email);
-            navigate("/");
-          }
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [navigate]);
+  
 
   function handleSignOut() {
     localStorage.removeItem("jwt");
