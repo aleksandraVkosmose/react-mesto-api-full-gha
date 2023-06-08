@@ -49,7 +49,7 @@ function App() {
       })))
     })
       .catch(err => console.log(err))
-  }}, [isLoggedIn]);
+  }}, [isLoggedIn, navigate]);
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false)
