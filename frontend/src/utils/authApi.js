@@ -39,7 +39,8 @@ class AuthApi {
 }
 
 const authApi = new AuthApi({
-    baseUrl: "https://api.mestoaalexandera.nomoredomains.rocks",
+  baseUrl: 'https://api.mestoaalexandera.nomoredomains.rocks',
+  //baseUrl: 'http://localhost:3000',
     headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"

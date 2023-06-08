@@ -1,7 +1,11 @@
 const allowedCors = [
     'http://mestoaalexandera.nomoredomains.rocks',
     'https://mestoaalexandera.nomoredomains.rocks',
-    'https://api.mestoaalexandera.nomoredomains.rocks'
+    'https://api.mestoaalexandera.nomoredomains.rocks',
+    'http://api.mestoaalexandera.nomoredomains.rocks',
+    'http://localhost:3001',
+    'http://localhost:3000',
+    'localhost:3000'
   ];
   
   const handlerCORS = (request, response, next) => {
@@ -9,10 +13,6 @@ const allowedCors = [
     const { method } = request;
     const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
     const requestHeaders = request.headers['access-control-request-headers'];
-    
-console.log(allowedCors.includes(origin))
-console.log(request.headers)
-console.log(origin)
 
     if (allowedCors.includes(origin)) {
       response.header('Access-Control-Allow-Origin', origin);
