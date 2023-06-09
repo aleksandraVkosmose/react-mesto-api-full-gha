@@ -9,8 +9,9 @@ const userSchema = require('../models/user');
 const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
 const ConflictError = require('../errors/ConflictError');
-const {NODE_ENV} = process.env
-const JWT = process.env.REACT_APP_JWT
+
+const { NODE_ENV } = process.env;
+const JWT = process.env.REACT_APP_JWT;
 module.exports.getUsers = (request, response, next) => {
   userSchema
     .find({})
@@ -38,10 +39,8 @@ module.exports.getUserById = (request, response, next) => {
 };
 
 module.exports.getUser = (request, response, next) => {
- 
   userSchema.findById(request.user._id)
     .then((user) => {
-      console.log(user)
       if (!user) {
         throw new NotFoundError('User cannot be found');
       }
@@ -167,11 +166,10 @@ module.exports.login = (request, response, next) => {
   return userSchema
     .findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, NODE_ENV==='production' ? JWT : 'cat', {
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT : 'cat', {
         expiresIn: '1w',
       });
-      console.log(token)
-      response.send({token});
+      response.send({ token });
     })
     .catch(next);
 };

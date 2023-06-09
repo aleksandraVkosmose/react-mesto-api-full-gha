@@ -34,7 +34,7 @@ function App() {
   const navigate = useNavigate();
 
   const checkLoginToken = () => {
-    const jwt = localStorage.getItem("jwt");
+    const jwt = localStorage.getItem('token');
     if (jwt) {
       authApi
         .checkToken(jwt)
